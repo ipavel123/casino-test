@@ -1,0 +1,100 @@
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server version:               5.5.58 - MySQL Community Server (GPL)
+-- Server OS:                    Win32
+-- HeidiSQL Version:             9.5.0.5196
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+-- Dumping structure for table casino_test.gifs
+CREATE TABLE IF NOT EXISTS `gifs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(50) DEFAULT NULL,
+  `name` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- Dumping data for table casino_test.gifs: ~3 rows (approximately)
+DELETE FROM `gifs`;
+/*!40000 ALTER TABLE `gifs` DISABLE KEYS */;
+INSERT INTO `gifs` (`id`, `code`, `name`) VALUES
+	(1, 'card', 'Бонусная карта на 1000 баллов'),
+	(2, 'bear', 'Плюшевый мишка'),
+	(3, 'travel', 'Поездка в Чехию');
+/*!40000 ALTER TABLE `gifs` ENABLE KEYS */;
+
+-- Dumping structure for table casino_test.prizes_limit
+CREATE TABLE IF NOT EXISTS `prizes_limit` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(50) DEFAULT NULL,
+  `count` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- Dumping data for table casino_test.prizes_limit: ~2 rows (approximately)
+DELETE FROM `prizes_limit`;
+/*!40000 ALTER TABLE `prizes_limit` DISABLE KEYS */;
+INSERT INTO `prizes_limit` (`id`, `code`, `count`) VALUES
+	(1, 'money', 1000),
+	(2, 'gifs', 10);
+/*!40000 ALTER TABLE `prizes_limit` ENABLE KEYS */;
+
+-- Dumping structure for table casino_test.transitions
+CREATE TABLE IF NOT EXISTS `transitions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `invoice` int(11) NOT NULL,
+  `count` int(11) NOT NULL,
+  `is_sended` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+
+-- Dumping data for table casino_test.transitions: ~0 rows (approximately)
+DELETE FROM `transitions`;
+/*!40000 ALTER TABLE `transitions` DISABLE KEYS */;
+INSERT INTO `transitions` (`id`, `user_id`, `invoice`, `count`, `is_sended`) VALUES
+	(1, 1, 123456, 166, 0),
+	(2, 1, 123456, 282, 0),
+	(3, 1, 123456, 494, 0),
+	(4, 1, 123456, 375, 0),
+	(5, 1, 123456, 245, 0),
+	(6, 1, 123456, 25, 0),
+	(7, 1, 123456, 315, 0),
+	(8, 1, 123456, 327, 0);
+/*!40000 ALTER TABLE `transitions` ENABLE KEYS */;
+
+-- Dumping structure for table casino_test.users
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `password_hash` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `auth_key` varchar(50) DEFAULT NULL,
+  `access_token` varchar(50) DEFAULT NULL,
+  `date_create` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `points` int(11) DEFAULT '0',
+  `invoice` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- Dumping data for table casino_test.users: ~2 rows (approximately)
+DELETE FROM `users`;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`id`, `username`, `password`, `password_hash`, `email`, `auth_key`, `access_token`, `date_create`, `points`, `invoice`) VALUES
+	(1, 'admin', 'admin', NULL, 'mr.o.pavel@gmail.com', NULL, 'wbpFh1uxBW6TbxKO4g8ANIA7Ri1S3m', '2019-05-27 16:44:20', 0, 123456),
+	(3, 'demo', 'demo', NULL, NULL, NULL, 'wbpFh1uxBW6TbxKO4g8ANIA7Ri1S3m2', '2019-05-27 16:44:20', 0, 123457);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
